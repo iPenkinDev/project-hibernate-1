@@ -1,23 +1,42 @@
 package com.game.entity;
 
+import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
+
 import java.util.Date;
 
-
+@Entity
+@Table(schema = "rpg", name = "player")
+@NamedQuery(name = "getAllCount", query = "select count(p) from Player p")
 public class Player {
+    @Id
+    @NonNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(length = 12)
+    @NonNull
     private String name;
 
+    @Column(length = 30)
+    @NonNull
     private String title;
 
+    @Enumerated(EnumType.ORDINAL)
+    @NonNull
     private Race race;
 
+    @Enumerated(EnumType.ORDINAL)
+    @NonNull
     private Profession profession;
 
+    @NonNull
     private Date birthday;
 
+    @NonNull
     private Boolean banned;
 
+    @NonNull
     private Integer level;
 
     public Player() {
